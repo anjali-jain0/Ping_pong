@@ -1,122 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-
 <head>
   <title>PingPong</title>
-  <link href='style.css' rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
 </head>
-
 <body>
-  <canvas id="canvas1" width="100%" height="100%"></canvas>
   
-<script>
-    var c=document.getElementById("canvas1");
-    var ctx=c.getContext("2d");
-    c.width=window.innerWidth*0.50;
-    c.height=window.innerHeight*0.90;
-
-    var dy1;var y1=100;var dy2;
-
-    window.addEventListener("keyup",
-    	function(event)
-    {
-      if(event.keyCode==38)
-      {
-        if(x9<c.width/2)
-        {
-        dy1=-100;
-        y1+=dy1;
-        }
-        else if(x9>=c.width/2)
-        {
-        dy2=-100;
-        y2+=dy2;
-        }
-      }
-      if(event.keyCode==40)
-      {
-        if(x9<c.width/2)
-        {
-        dy1=100;
-        y1+=dy1;
-        }
-        else if(x9>=c.width/2)
-        {
-        dy2=100;
-        y2+=dy2;
-        }
-    	}
-    });
-
-     
-
-    var y2=400;var x2=c.width-20;
-    var dx9=5;
-    var dy9=5;
-    var x9=Math.random()*c.width;
-    var y9=Math.random()*c.height;
-    var radius=20;
-    var s=0;
-
-    function animate()
-    {
-    	requestAnimationFrame(animate);
-    	ctx.clearRect(0,0,innerWidth,innerHeight);
-      ctx.font="20px Arial";
-      ctx.fillStyle="white";
-      ctx.fillText("SCORE: " + s,300,30);
-    	ctx.beginPath();
-      ctx.strokeStyle="white";
-    	ctx.moveTo(c.width/2,0);
-    	ctx.lineTo(c.width/2,c.height);
-    	ctx.stroke();
-    	
-    	ctx.beginPath();
-    	ctx.fillStyle="#ECF0F1  ";
-    	ctx.fillRect(0,y1,20,160);
-
-    	ctx.beginPath();
-    	ctx.fillStyle="#ECF0F1  ";
-    	ctx.fillRect(x2,y2,20,160);
-
-       ctx.beginPath();
-       ctx.arc(x9,y9,radius,0,2*Math.PI);
-       ctx.fillStyle="#EC7063  ";
-       ctx.fill();
-       ctx.stroke();
-
-       if(x9+radius+20>c.width)
-       {
-         if(y9+radius>y2 && y9-radius<y2+160)
-        {
-          dx9=-dx9;
-          if(x9+radius>=c.width-20)
-          s++;
-        }
-        else if(x9>c.width-20)
-        {
-          alert("game over!!");
-        }
-      }
-        if(x9-radius-20<0)
-        {
-        	if(y9+radius>y1 && y9-radius<y1+160)
-        	{
-        		dx9=-dx9;
-            if(x9-radius<=20)
-            s++;
-        	}
-          else if(x9<=20)
-            {alert("game over!!");}
-        }
-         if(y9+radius>c.height || y9-radius<0)
-        {
-          dy9=-dy9;
-        }
-        x9+=dx9;
-         y9+=dy9;
-    }
-    animate();
-</script>
+	<div id = 'gamePage' >
+		<canvas id="canvas"> </canvas>
+	</div>
+	<div id = 'endBox' >
+		<h2 class = 'endText' > Game Over! </h2>
+        <p class = 'endText' > Your Score is : 
+        	<span id = 'score' > </span>
+        </p>
+        <a href = './ping.html'> 
+			<button class='tryAgainBtn'> Try Again </button>
+		</a>
+	</div>
+  
+</body> 
+<script src="./index.js"> </script>
 </body>
 </html>
